@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KTP Checker · Indonesia</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --bg: #ffffff;
+            --fg: #111111;
+            --muted: #717171;
+            --border: #eaeaea;
+            --primary: #000000;
+            --error: #ef4444;
+            --card-bg: #fafafa;
+            --shadow-md: 0 6px 16px rgba(0,0,0,0.05);
+            --radius: 12px;
+            --sidebar-bg: #f8f9fa;
+            --sidebar-width: 300px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #fcfcfd;
+            color: var(--fg);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--sidebar-bg);
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            padding: 24px;            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar h3 {
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        .sidebar p {
+            font-size: 0.92rem;
+            color: var(--muted);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .sidebar-footer {
+            margin-top: auto;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--muted);
+        }
+
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .toggle-btn:hover {
+            background: #f0f0f0;        }
+
+        /* Main container */
+        .main-container {
+            padding: 48px 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 720px;
+            background: var(--bg);
+            border-radius: var(--radius);
+            padding: 48px;
+            box-shadow: var(--shadow-md);
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+        }
+
+        .input-group {
+            margin-bottom: 28px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--fg);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid var(--border);            border-radius: var(--radius);
+            font-size: 1rem;
+            font-family: inherit;
+            background: var(--bg);
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+        }
+
+        button {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        button:hover {
+            opacity: 0.95;
+        }
+
+        .loading, .error, .result {
+            margin-top: 32px;
+            display: none;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0,0,0,0.1);
+            border-left-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .loading p {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .error {
+            color: var(--error);
+            text-align: center;
+            padding: 16px;
+            background: rgba(239, 68, 68, 0.06);
+            border-radius: var(--radius);
+            font-weight: 500;
+        }
+
+        .result h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            text-align: center;
+            color: var(--fg);
+        }
+
+        .result-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .result-item {
+            background: var(--card-bg);
+            padding: 18px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        .label {
+            font-size: 0.8125rem;
+            color: var(--muted);
+            font-weight: 600;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .value {            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--fg);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 56px;
+            color: var(--muted);
+            font-size: 0.875rem;
+        }
+
+        .social-link {
+            color: var(--fg);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 32px 24px;
+            }
+            h1 {
+                font-size: 1.75rem;
+            }
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                width: 280px;
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .toggle-btn {
+                top: 12px;
+                left: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Toggle Button -->
+    <div class="toggle-btn" id="toggleSidebar">
+        <i class="fas fa-bars"></i>
+    </div>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <h3>Tentang Data NIK</h3>
+        <p>
+            Data yang dihasilkan hanya berdasarkan terjemahan digit NIK sesuai struktur resmi.
+        </p>
+        <p>
+            Informasi lokasi mencerminkan <strong>tempat pertama kali NIK dibuat</strong> atau <strong>tempat lahir</strong>, <em>bukan domisili pemilik saat ini</em>.
+        </p>
+        <p>
+            Hasil ini bersifat informatif dan tidak merepresentasikan data kependudukan real-time.
+        </p>
+
+        <div class="sidebar-footer">
+            <p><strong>Pembuat Website:</strong><br>Abiq Nurmagedov</p>
+            <p>v1.0 · 2026</p>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="container">
+            <h1>KTP Checker</h1>
+            <p class="subtitle">Ekstrak informasi dari NIK KTP Indonesia dalam sekejap</p>
+
+            <div class="input-group">
+                <label for="nikInput">16-Digit NIK</label>
+                <input type="text" id="nikInput" placeholder="Contoh: 3204110712970001" maxlength="16" inputmode="numeric" autocomplete="off" />
+            </div>
+
+            <button id="parseBtn">
+                <i class="fas fa-search"></i> Parse NIK
+            </button>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Tungguin bentar ya...</p>
+            </div>
+
+            <div class="error" id="error">
+                <i class="fas fa-exclamation-circle"></i> Masukkan NIK 16 digit yang valid.
+            </div>
+
+            <div class="result" id="result">
+                <h2>Informasi dari NIK: <span id="resultNik"></span></h2>
+                <div class="result-grid">
+                    <div class="result-item"><div class="label">Provinsi</div><div class="value" id="provinsi">-</div></div>
+                    <div class="result-item"><div class="label">Kota/Kabupaten</div><div class="value" id="kotakab">-</div></div>
+                    <div class="result-item"><div class="label">Kecamatan</div><div class="value" id="kecamatan">-</div></div>                    <div class="result-item"><div class="label">Kode Pos</div><div class="value" id="kodepos">-</div></div>
+                    <div class="result-item"><div class="label">Jenis Kelamin</div><div class="value" id="kelamin">-</div></div>
+                    <div class="result-item"><div class="label">Tanggal Lahir</div><div class="value" id="lahir">-</div></div>
+                    <div class="result-item"><div class="label">Pasaran</div><div class="value" id="pasaran">-</div></div>
+                    <div class="result-item"><div class="label">Usia</div><div class="value" id="usia">-</div></div>
+                    <div class="result-item"><div class="label">Ulang Tahun</div><div class="value" id="ultah">-</div></div>
+                    <div class="result-item"><div class="label">Zodiak</div><div class="value" id="zodiak">-</div></div>
+                    <div class="result-item"><div class="label">Uniqcode</div><div class="value" id="uniqcode">-</div></div>
+                </div>
+            </div>
+
+            <footer>
+                <p>Data diperoleh dari API nik_parse.js</p>
+                <p>
+                    <a href="https://instagram.com/zhyro17_" class="social-link" target="_blank">
+                        <i class="fab fa-instagram"></i> @zhyro17_ (abiq)
+                    </a>
+                </p>
+                <p>&copy; 2026 KTP Checker</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Sidebar toggle
+            const toggleBtn = document.getElementById('toggleSidebar');
+            const sidebar = document.getElementById('sidebar');
+
+            toggleBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('open');
+            });
+
+            // Close sidebar when clicking outside (on mobile/desktop)
+            document.addEventListener('click', (e) => {
+                if (sidebar.classList.contains('open') && 
+                    !sidebar.contains(e.target) && 
+                    e.target !== toggleBtn) {
+                    sidebar.classList.remove('open');
+                }
+            });
+
+            // Existing NIK parser logic
+            const nikInput = document.getElementById('nikInput');
+            const parseBtn = document.getElementById('parseBtn');
+            const loadingEl = document.getElementById('loading');
+            const errorEl = document.getElementById('error');
+            const resultEl = document.getElementById('result');
+
+            nikInput.addEventListener('input', (e) => {                e.target.value = e.target.value.replace(/\D/g, '').slice(0, 16);
+            });
+
+            nikInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') parseBtn.click();
+            });
+
+            parseBtn.addEventListener('click', () => {
+                const nik = nikInput.value.trim();
+                if (nik.length !== 16 || isNaN(nik)) {
+                    errorEl.style.display = 'block';
+                    errorEl.innerHTML = '<i class="fas fa-exclamation-circle"></i> Masukkan 16 digit NIK yang valid';
+                    return;
+                }
+
+                loadingEl.style.display = 'block';
+                errorEl.style.display = 'none';
+                resultEl.style.display = 'none';
+
+                fetch(`https://script.google.com/macros/s/AKfycbwwGKJ6JU7xyfpl_fwQpjsOjzoHZAUzTyOsnXJnbNuDyTx8aqvx5OX8TXHGKUT-OTh5/exec?nik=${nik}`)
+                    .then(response => {
+                        if (!response.ok) throw new Error('Network response was not ok');
+                        return response.json();
+                    })
+                    .then(data => {
+                        loadingEl.style.display = 'none';
+                        if (data.status === 'success') {
+                            document.getElementById('resultNik').textContent = data.nik;
+                            document.getElementById('provinsi').textContent = data.provinsi || '-';
+                            document.getElementById('kotakab').textContent = data.kotakab || '-';
+                            document.getElementById('kecamatan').textContent = data.kecamatan || '-';
+                            document.getElementById('kodepos').textContent = data.kodepos || '-';
+                            document.getElementById('kelamin').textContent = data.kelamin || '-';
+                            document.getElementById('lahir').textContent = data.lahir || '-';
+                            document.getElementById('pasaran').textContent = data.pasaran || '-';
+                            document.getElementById('usia').textContent = data.usia || '-';
+                            document.getElementById('ultah').textContent = data.ultah || '-';
+                            document.getElementById('zodiak').textContent = data.zodiak || '-';
+                            document.getElementById('uniqcode').textContent = data.uniqcode || '-';
+
+                            resultEl.style.display = 'block';
+
+                            setTimeout(() => {
+                                resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }, 100);
+
+                            const items = resultEl.querySelectorAll('.result-item');
+                            items.forEach((item, i) => {
+                                item.style.opacity = '0';
+                                item.style.transform = 'translateY(10px)';                                setTimeout(() => {
+                                    item.style.opacity = '1';
+                                    item.style.transform = 'translateY(0)';
+                                }, i * 80);
+                            });
+                        } else {
+                            errorEl.style.display = 'block';
+                            errorEl.innerHTML = '<i class="fas fa-exclamation-circle"></i> NIK tidak valid atau tidak ditemukan.';
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Error:', err);
+                        loadingEl.style.display = 'none';
+                        errorEl.style.display = 'block';
+                        errorEl.innerHTML = '<i class="fas fa-exclamation-circle"></i> Gagal memproses NIK. Periksa koneksi internet Anda.';
+                    });
+            });
+
+            const items = document.querySelectorAll('.result-item');
+            items.forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(10px)';
+                item.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            });
+        });
+    </script>
+</body>
+  </html>
