@@ -73,9 +73,7 @@ Library ini mampu mendekode struktur NIK sesuai standar administrasi kependuduka
 
 API:
 ```bash
-GET https://script.google.com/macros/s/AKfycbwwGKJ
-6JU7xyfpl
-_fwQpjsOjzoHZAUzTyOsnXJnbNuDyTx8aqvx5OX8T XHGKUT-OTh5/exec?nik=
+GET https://script.google.com/macros/s/AKfycbwwGKJ6JU7xyfpl_fwQpjsOjzoHZAUzTyOsnXJnbNuDyTx8aqvx5OX8TXHGKUT-OTh5/exec?nik=
 ```
 
 ✅ **Kami tidak mengklaim kepemilikan atas logika parsing NIK** — semua kredit teknis untuk decoding NIK diberikan kepada pembuat asli: **Ibnu Bachors**.
