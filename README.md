@@ -1,4 +1,4 @@
-# 🇮🇩 KTP Checker 17 – Parser NIK KTP Indonesia
+# KTP Checker – Parser NIK KTP Indonesia
 
 ![KTP Checker Preview](https://via.placeholder.com/800x400/fcfcfd/111111?text=KTP+Checker+Preview)  
 *(Screenshot aktual akan ditampilkan setelah deploy)*
@@ -92,8 +92,8 @@ _fwQpjsOjzoHZAUzTyOsnXJnbNuDyTx8aqvx5OX8T XHGKUT-OTh5/exec?nik=
 
 ## 👤 Pembuat
 
-Dibuat oleh **[Abiq Nurmagedov](https://instagram.com/ab.iqqq)**  
-- Instagram: [@ab.iqqq](https://instagram.com/ab.iqqq)  
+Dibuat oleh **[Abiq Nurmagedov](https://instagram.com/zhyro17_)**  
+- Instagram: [@zhyro17](https://instagram.com/zhyro17)  
 - GitHub: [@abiqnurmagedov17](https://github.com/abiqnurmagedov17)
 
 ---
