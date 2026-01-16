@@ -1,95 +1,105 @@
-# 🇮🇩 NIK Parser – Ekstrak Informasi dari NIK KTP Indonesia
+# KTP Checker 17 – Parser NIK KTP Indonesia
 
-![Preview](https://via.placeholder.com/800x400/fcfcfd/111111?text=NIK+Parser+Preview)  
-*(Ganti dengan screenshot aktual saat deploy)*
+![KTP Checker 17 Preview](https://via.placeholder.com/800x450/3a86ff/ffffff?text=KTP+Checker+17+Preview)
+*(Screenshot aktual akan ditampilkan setelah deploy)*
 
-Aplikasi web ringan untuk **menerjemahkan 16 digit NIK (Nomor Induk Kependudukan)** KTP Indonesia menjadi informasi terstruktur seperti provinsi, kabupaten/kota, jenis kelamin, tanggal lahir, usia, zodiak, dan lainnya — **langsung di browser, tanpa instalasi**.
+Aplikasi web ringan untuk menerjemahkan 16 digit NIK (Nomor Induk Kependudukan) dari KTP Indonesia menjadi informasi terstruktur seperti provinsi, kabupaten/kota, jenis kelamin, tanggal lahir, usia, zodiak, dan lainnya — langsung di browser, tanpa instalasi.
 
-> ⚠️ **Catatan Penting**: Data yang dihasilkan hanya berdasarkan struktur resmi NIK. Informasi lokasi mencerminkan **tempat pertama kali NIK dibuat** atau **tempat lahir**, **bukan domisili pemilik saat ini**.
+> ⚠️ **Catatan Penting:** Data yang dihasilkan hanya berdasarkan struktur resmi NIK. Informasi lokasi mencerminkan tempat pertama kali NIK dibuat atau tempat lahir, **bukan domisili pemilik saat ini**.
 
 ---
 
-## 🔍 Fitur
+## 🔍 Fitur Utama
 
 - ✅ Parsing NIK 16 digit secara real-time
-- 🌐 Tampilan **premium minimalist** yang responsif (mobile & desktop)
-- 📊 Menampilkan:
+- 🌐 Desain premium minimalist yang responsif (mobile & desktop)
+- 📊 Menampilkan informasi lengkap:
   - Provinsi & Kabupaten/Kota
   - Kecamatan & Kode Pos
   - Jenis Kelamin & Tanggal Lahir
   - Usia, Ulang Tahun, Zodiak
   - Pasaran Jawa & Uniqcode
-- ℹ️ Sidebar informatif tentang keterbatasan data
-- 🎨 Animasi halus & UX intuitif
-- 🚀 Tanpa backend — semua diproses via API eksternal
+- ℹ️ Sidebar informatif (toggleable) tentang keterbatasan data
+- 🎨 Animasi halus, loading spinner modern, dan UX intuitif
+- 🚀 Pure static site — tidak perlu backend
 
 ---
 
-## 🛠 Teknologi yang Digunakan
+## 🛠 Teknologi
 
-- **HTML5**, **CSS3**, **JavaScript (Vanilla)**
-- Font: [Inter](https://fonts.google.com/specimen/Inter) (modern & readable)
-- Ikon: [Font Awesome](https://fontawesome.com/)
-- Hosting: Bisa dijalankan di **GitHub Pages**, Netlify, Vercel, atau static hosting apa pun
+- **HTML5, CSS3, JavaScript (Vanilla)**
+- **Font:** Inter
+- **Ikon:** Font Awesome
+- **Hosting:** Kompatibel dengan GitHub Pages, Netlify, Vercel, dll.
 
 ---
 
 ## 🌐 Demo Langsung
 
-🔗 [https://abiq.dev/nik-parser](https://abiq.dev/nik-parser)  
-*(Ganti dengan URL live-mu setelah deploy)*
+🔗 **[https://abiqnurmagedov17.github.io/KTP-Checker17](https://abiqnurmagedov17.github.io/KTP-Checker17)**
+
+*(Aktifkan GitHub Pages di Settings → Pages → Branch: main, Folder: /root)*
 
 ---
 
 ## 📥 Cara Menjalankan Lokal
 
-1. Clone repositori ini:
-```bash
-   git clone https://github.com/abiq/nik-parser.git
-   cd nik-parser
+1. Clone repositori:
+   ```bash
+   git clone https://github.com/abiqnurmagedov17/KTP-Checker17.git
+   cd KTP-Checker17
 ```
 
-2. Buka file `index.html` di browser:
-```bash
-   open index.html  # macOS
-   start index.html # Windows
-   xdg-open index.html # Linux
+1. Buka index.html di browser favoritmu:
+   ```bash
+   open index.html
+   # atau langsung buka file di browser
+   ```
+
+Tidak perlu server — ini pure static HTML/CSS/JS!
+
+---
+
+⚙️ API Backend
+
+Aplikasi ini menggunakan Google Apps Script sebagai layanan parsing:
+
+```
+https://script.google.com/macros/s/AKfycbwwGKJ6JU7xyfpl_fwQpjsOjzoHZAUzTyOsnXJnbNuDyTx8aqvx5OX8TXHGKUT-OTh5/exec?nik=
 ```
 
-> Tidak perlu server — ini pure static site!
+Respons berupa JSON dengan status success jika NIK valid.
 
 ---
 
-## ⚙️ API Backend
+📝 Privasi & Etika
 
-Aplikasi ini menggunakan **Google Apps Script** sebagai backend untuk parsing NIK:https://script.google.com/macros/s
-/AKfycbwwGKJ6JU7xyfpl
-_fwQpjsOjzoHZAUzTyOsnXJnbNuDyTx8aqvx5OX8TXHGKUT-OTh5/exec
-
-> ⚠️ API ini hanya menerima parameter `nik` via **GET request**.
+· ❌ Tidak ada data NIK yang disimpan di server
+· 🔒 Semua permintaan dikirim langsung dari browser ke API
+· 🎯 Aplikasi ini hanya untuk edukasi dan eksplorasi teknis — jangan gunakan untuk tujuan ilegal atau pelanggaran privasi
 
 ---
 
-## 📝 Catatan Privasi
+👤 Pembuat
 
-- **Tidak ada data NIK yang disimpan** di server.
-- Semua permintaan dikirim langsung dari browser ke API.
-- Aplikasi ini **hanya untuk tujuan edukasi dan eksplorasi teknis**.
+Dibuat oleh Abiq Nurmagedov
 
----
-
-## 👤 Pembuat
-
-Dibuat dengan ❤️ oleh **[Abiq Nurmagedov](https://instagram.com/ab.iqqq)**  
-Instagram: [@ab.iqqq](https://instagram.com/ab.iqqq)  
-Email: abiq@rommiui.com
+· Instagram: @ab.iqqq
+· GitHub: @abiqnurmagedov17
 
 ---
 
-## 📄 Lisensi
+📄 Lisensi
 
-Proyek ini bersifat **open-source** untuk pembelajaran.  
 © 2026 Abiq Nurmagedov. All rights reserved.
+Proyek ini bersifat open untuk pembelajaran pribadi.
+
+---
+
+💡 Ingin kontribusi? Pull request diterima!
+🐞 Temukan bug? Laporkan di Issues.
+
+```© 2026 Abiq Nurmagedov. All rights reserved.
 
 ---
 
