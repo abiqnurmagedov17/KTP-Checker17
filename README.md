@@ -34,11 +34,10 @@ Website ringan untuk **menerjemahkan 16 digit NIK (Nomor Induk Kependudukan)** d
 
 ---
 
-## 🌐 Demo Langsung
+## 🌐 Website
 
-🔗 [https://abiqnurmagedov17.github.io/KTP-Checker17](https://abiqnurmagedov17.github.io/KTP-Checker17)
+🔗 [https://ktp-checker17.vercel.app](https://ktp-checker17.vercel.app/)
 
-*(Aktifkan GitHub Pages di Settings → Pages → Branch: `main`, Folder: `/root`)*
 
 ---
 
@@ -61,7 +60,7 @@ open index.html
 
 ## ⚙️ API Backend & Sumber Data
 
-Aplikasi ini menggunakan **Google Apps Script** sebagai backend yang mengimplementasikan logika dari library open-source:
+Website ini menggunakan **Google Apps Script** sebagai backend yang mengimplementasikan logika dari library open-source:
 
 > ### 📚 [**nik_parse.js**](https://github.com/bachors/nik_parse.js/)  
 > oleh **[Ibnu Bachors](https://github.com/bachors)**
