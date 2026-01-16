@@ -46,13 +46,13 @@ Website ringan untuk **menerjemahkan 16 digit NIK (Nomor Induk Kependudukan)** d
 
 1. Clone repositori:
 ```bash
-   git clone https://github.com/abiqnurmagedov17/KTP-Checker17.git
+git clone https://github.com/abiqnurmagedov17/KTP-Checker17.git
    cd KTP-Checker17
 ```
 
 2. Buka `index.html` di browser favoritmu:
 ```bash
-   open index.html
+open index.html
 ```
 
 > Tidak perlu server — ini pure static HTML/CSS/JS!
