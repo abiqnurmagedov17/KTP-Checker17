@@ -1,6 +1,6 @@
 # KTP Checker – Parser NIK KTP Indonesia
 
-![KTP Checker Preview](https://via.placeholder.com/800x400/fcfcfd/111111?text=KTP+Checker+Preview)  
+![KTP Checker Preview](https://ibb.co.com/hRqB39dW)  
 *Tampilan screenshot web*
 
 Website ringan untuk **menerjemahkan 16 digit NIK (Nomor Induk Kependudukan)** dari KTP Indonesia menjadi informasi terstruktur seperti provinsi, kabupaten/kota, jenis kelamin, tanggal lahir, usia, zodiak, dan lainnya — **langsung di browser, tanpa instalasi**.
