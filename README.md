@@ -73,7 +73,7 @@ Library ini mampu mendekode struktur NIK sesuai standar administrasi kependuduka
 
 API:
 ```bash
-   GET https://script.google.com/macros/s/AKfycbwwGKJ
+GET https://script.google.com/macros/s/AKfycbwwGKJ
 6JU7xyfpl
 _fwQpjsOjzoHZAUzTyOsnXJnbNuDyTx8aqvx5OX8T XHGKUT-OTh5/exec?nik=
 ```
