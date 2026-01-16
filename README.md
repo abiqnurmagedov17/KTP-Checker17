@@ -3,7 +3,7 @@
 ![KTP Checker Preview](https://via.placeholder.com/800x400/fcfcfd/111111?text=KTP+Checker+Preview)  
 *(Screenshot aktual akan ditampilkan setelah deploy)*
 
-Aplikasi web ringan untuk **menerjemahkan 16 digit NIK (Nomor Induk Kependudukan)** dari KTP Indonesia menjadi informasi terstruktur seperti provinsi, kabupaten/kota, jenis kelamin, tanggal lahir, usia, zodiak, dan lainnya — **langsung di browser, tanpa instalasi**.
+Website ringan untuk **menerjemahkan 16 digit NIK (Nomor Induk Kependudukan)** dari KTP Indonesia menjadi informasi terstruktur seperti provinsi, kabupaten/kota, jenis kelamin, tanggal lahir, usia, zodiak, dan lainnya — **langsung di browser, tanpa instalasi**.
 
 > ⚠️ **Catatan Penting**: Data yang dihasilkan hanya berdasarkan struktur resmi NIK. Informasi lokasi mencerminkan **tempat pertama kali NIK dibuat** atau **tempat lahir**, **bukan domisili pemilik saat ini**.
 
